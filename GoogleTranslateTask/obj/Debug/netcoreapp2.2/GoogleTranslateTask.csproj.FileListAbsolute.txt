@@ -30,3 +30,5 @@ C:\Users\Murad\source\repos\GoogleTranslateTask\GoogleTranslateTask\obj\Debug\ne
 C:\Users\Murad\source\repos\GoogleTranslateTask\GoogleTranslateTask\obj\Debug\netcoreapp2.2\GoogleTranslateTask.dll
 C:\Users\Murad\source\repos\GoogleTranslateTask\GoogleTranslateTask\obj\Debug\netcoreapp2.2\GoogleTranslateTask.pdb
 C:\Users\Murad\source\repos\GoogleTranslateTask\GoogleTranslateTask\obj\Debug\netcoreapp2.2\GoogleTranslateTask.csproj.CopyComplete
+C:\Users\Murad\source\repos\GoogleTranslateTask\GoogleTranslateTask\obj\Debug\netcoreapp2.2\Razor\Views\Translate\Index.cshtml.g.cs
+C:\Users\Murad\source\repos\GoogleTranslateTask\GoogleTranslateTask\obj\Debug\netcoreapp2.2\Razor\Views\Translate\Create.cshtml.g.cs

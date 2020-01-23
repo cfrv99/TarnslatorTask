@@ -13,7 +13,6 @@
       "launchBrowser": true,
       "environmentVariables": {
         "Key": "Value",
-        "GOOGLE_APPLICATION_CREDENTIALS": "C:\\Keys\\ServiceAccountKey.json",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

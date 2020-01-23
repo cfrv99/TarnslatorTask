@@ -6,10 +6,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Google.Cloud.Translation.V2;
 using GoogleTranslateTask.Models;
+using GoogleTranslateTask.Services;
 
 namespace GoogleTranslateTask.Controllers
 {
-    public class TranslateController:Controller
+    public class TranslateController : Controller
     {
         private readonly DataContext context;
 
@@ -20,16 +21,28 @@ namespace GoogleTranslateTask.Controllers
 
         public IActionResult Index()
         {
-            var client = TranslationClient.Create();
 
-            List<ProductVM> vMs = new List<ProductVM>();
-            //var products = context.Products.Select(i => new ProductVM
+
+            #region with google api
+            //var client = TranslationClient.Create();
+            //List<ProductVM> vMs = new List<ProductVM>();
+            //var products = context.Products.ToList();
+            //foreach (var item in products)
             //{
-            //    Name = i.Name,
-            //    Description = i.Description,
-            //    Price = i.Price,
-            //    DescriptionENG = client.TranslateText(i.Description, LanguageCodes.Turkish, LanguageCodes.English).TranslatedText
-            //}).ToList();
+            //    ProductVM p = new ProductVM()
+            //    {
+            //        Description = item.Description,
+            //        Price = item.Price,
+            //        Name = item.Name,
+            //        DescriptionENG = client.TranslateText(item.Description, LanguageCodes.Turkish, LanguageCodes.English).TranslatedText
+            //    };
+            //    vMs.Add(p);
+            //}
+            #endregion with yandex api
+
+
+            //var client = TranslationClient.Create();
+            List<ProductVM> vMs = new List<ProductVM>();
             var products = context.Products.ToList();
             foreach (var item in products)
             {
@@ -38,11 +51,34 @@ namespace GoogleTranslateTask.Controllers
                     Description = item.Description,
                     Price = item.Price,
                     Name = item.Name,
-                    DescriptionENG = client.TranslateText(item.Description, LanguageCodes.Turkish, LanguageCodes.English).TranslatedText
+                    DescriptionENG = TranslatorService.AzToEng(item.Description)
                 };
                 vMs.Add(p);
             }
+
+
+
             return View(vMs);
+        }
+
+        public IActionResult Create()
+        {
+
+            return View(new Product());
+        }
+        [HttpPost]
+        public IActionResult Create(Product model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model != null)
+                {
+                    context.Products.Add(model);
+                    context.SaveChanges();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
         }
     }
 }
